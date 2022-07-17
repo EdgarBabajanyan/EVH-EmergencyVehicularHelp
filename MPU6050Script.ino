@@ -61,7 +61,7 @@ void loop() {
   Serial.print(z);
   Serial.println(" rad/s");
 
-  if(x >= 8 ){
+  if(x >= 8 || x <= -8){
     exit(0);
     
   }
