@@ -22,8 +22,7 @@ File myFile;
 
 bool ErrEnd = false;
 
-// Please enter your sensitive data in the Secret tab or arduino_secrets.h (This is just the simple info we need 
-// PIN Number
+// PIN Number for SIM Card
 const char PINNUMBER[] = SECRET_PINNUMBER;
 
 lte_initialize sms;
@@ -128,15 +127,15 @@ if(x >= 8 || x <= -8){
     if (err == AUDIOLIB_ECODE_FILEEND) {
       Serial.println("File ended!\n");
       myFile.close();
-      myFile = theSD.open("ask_help.mp3"); //asks user if theyre okay
+      myFile = theSD.open("ask_help.mp3"); //prompt begins here
       long int t1 = millis();
       while (digitalRead(A4) == HIGH) {
         long int t2 = millis();
         long int t3 = t1-t2;
         if (t3 >= 20000) {
           //sms send
-          sms.beginSMS("2035559081"); //numbers must be preloaded
-          sms.print("John fell off their bike and has not prevented this message from being send!"); //message must be preloaded
+          sms.beginSMS("2035559081"); //phone numbers must be preloaded
+          sms.print("John fell off their bike and has not prevented this message from being sent!"); //message must be preloaded
           sms.endSMS();
           Serial.println("\nCOMPLETE!\n");
         }
